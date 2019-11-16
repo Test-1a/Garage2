@@ -42,11 +42,21 @@ namespace Garage2
 
         internal bool AddVehicle(Vehicle v)
         {
-            vehicles[count] = v;
+            //vehicles[count] = v;
+            //count++;
+            //return true;
+
+            int addIndex = Array.FindIndex(vehicles, i => i == null);
+            Console.WriteLine($"AddIndex = {addIndex}");
+            vehicles[addIndex] = v;
             count++;
             return true;
         }
-        
 
+        internal void RemoveVehicle(int v)
+        {
+            vehicles[v] = null;
+            count--;
+        }
     }
 }

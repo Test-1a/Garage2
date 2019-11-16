@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace Garage2
 {
     internal class GarageHandler
     {
-        private Garage<Vehicle> Garra { get; set; }
+        private Garage<Vehicle> Garra /*{ get; set; }*/;
         
         public GarageHandler()
         {
@@ -41,7 +42,7 @@ namespace Garage2
 
             if (parkAnswers[0] == "Car")
             {
-                Car car = new Car(parkAnswers[1], parkAnswers[2], parkAnswers[3], parkAnswers[4]);
+                Car car = new Car(parkAnswers[1].ToUpper(), parkAnswers[2].ToUpper(), parkAnswers[3], parkAnswers[4].ToUpper());
                 Console.WriteLine("A car has been created!");
                 success = Garra.AddVehicle(car);
                 
@@ -82,6 +83,30 @@ namespace Garage2
                 }
                 index++;
             }
+        }
+
+        internal void Unpark(string regnr)
+        {
+            //Vehicle removeVehicle = FindVehicleByRegNr(regnr.ToUpper());
+            //int removeIndex = Array.IndexOf(Garra., removeVehicle);
+
+            /*IEnumerable<int>*/ int[] x = Garra.Select((s, i) => new { i, s })
+                .Where(t => t.s.RegNr == regnr)
+                .Select(t => t.i).ToArray();
+
+            foreach (var item in x)
+            {
+                Console.WriteLine("This is it: " + item);
+            }
+
+            Garra.RemoveVehicle(x[0]);
+
+        }
+
+        private Vehicle FindVehicleByRegNr(string regnr)
+        {
+            Vehicle v = Garra.FirstOrDefault(v => v.RegNr == regnr);
+            return v;
         }
     }
 }

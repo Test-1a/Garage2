@@ -105,6 +105,13 @@ namespace Garage2
                         bool parkingSuccessful = GH.ParkVehicle(parkAnswers);
                         break;
 
+                    case "3":
+                        //unpark a vehicle
+                        Console.WriteLine("What is the RegNr for the vehicle to unpark?");
+                        string input3 = Console.ReadLine().ToUpper();
+                        GH.Unpark(input3);
+                        break;
+
                     default:
                         break;
                 }
@@ -119,6 +126,7 @@ namespace Garage2
             Console.WriteLine("'0' to close the menu");
             Console.WriteLine("'1' to create a garage");
             Console.WriteLine("'2' to park a vehicle");
+            Console.WriteLine("'3' to unpark a vehicle");
         }
 
     }
