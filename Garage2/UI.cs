@@ -12,24 +12,53 @@ namespace Garage2
 
         internal void run()
         {
-            Console.WriteLine("Hi and welcome to the GarageHandler!");
-            ShowMenu();
-            string menuChoise = Console.ReadLine();
-
-            switch (menuChoise)
+            while (true)
             {
-                case "0":
-                    break;
+                Console.WriteLine("Hi and welcome to the GarageHandler!");
+                ShowMenu();
+                string menuChoise = Console.ReadLine();
 
-                default:
-                    break;
+                switch (menuChoise)
+                {
+                    case "0":
+                        break;
+
+                    case "1":
+                        //create a Garage
+                        string input11;
+                        int input12;
+                        Console.WriteLine("What is the name of the Garage?");
+                        input11 = Console.ReadLine();
+                        Console.WriteLine("What capacity should the Garage have?");
+                        try
+                        {
+                            input12 = int.Parse(Console.ReadLine());
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Wrong format of the Capacity (not an integer).");
+                            Console.WriteLine("Please try again");
+                            Console.WriteLine();
+                            continue;
+                        }
+                        GH.CreateGarage(input11, input12);
+
+
+                        break;
+
+                    default:
+                        break;
+                }
             }
+
+           
         }
 
         private void ShowMenu()
         {
             Console.WriteLine("What do you want to do?");
-            Console.WriteLine("'0' for closing the menu");
+            Console.WriteLine("'0' to close the menu");
+            Console.WriteLine("'1' to create a garage");
         }
 
     }

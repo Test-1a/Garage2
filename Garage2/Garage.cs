@@ -6,6 +6,15 @@ namespace Garage2
     internal class Garage<T> : IEnumerable<T> where T : Vehicle 
     {
         private Vehicle[] vehicles;
+        private string Name { get; set; }
+        private int MaxCapacity { get; set; }
+
+        public Garage(string input11, int input12)
+        {
+            Name = input11;
+            MaxCapacity = input12;
+            vehicles = new Vehicle[MaxCapacity];
+        }
 
         public IEnumerator<T> GetEnumerator()
         {
