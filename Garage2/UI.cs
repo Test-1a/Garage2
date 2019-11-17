@@ -103,13 +103,68 @@ namespace Garage2
                             parkAnswers.Add(Console.ReadLine());
                         }
                         bool parkingSuccessful = GH.ParkVehicle(parkAnswers);
+                        if (parkingSuccessful) Console.WriteLine("The parking was successful.");
+                        else Console.WriteLine("Sorry, the garage was full.");
                         break;
 
                     case "3":
                         //unpark a vehicle
                         Console.WriteLine("What is the RegNr for the vehicle to unpark?");
                         string input3 = Console.ReadLine().ToUpper();
-                        GH.Unpark(input3);
+                        bool success = GH.Unpark(input3);
+                        if (success) Console.WriteLine("The unparking was successful");
+                        else Console.WriteLine("That vehicle was not parked in the garage");
+                        break;
+
+                    case "4":
+                        //list all parked vehicles
+                       Vehicle[] ves = GH.ListAllParkedVehicles();
+                        for (int i = 0; i < ves.Length; i++)
+                        {
+                            Vehicle item = ves[i];
+
+                            if (item is Car castItem)
+                            {
+                                Console.WriteLine("It Is a CAR!!");
+                                Console.WriteLine($"RegNr: {castItem.RegNr}");
+                                Console.WriteLine($"Color: {castItem.Color}");
+                                Console.WriteLine($"Antal hjul: {castItem.NumberOfWheels}");
+                                Console.WriteLine($"Fueltype: {castItem.Fueltype}");
+                            }
+                            /*else if (item is MC castItem2)
+                            {
+                                Console.WriteLine("It Is a MC!!");
+                                Console.WriteLine($"RegNr: {castItem2.RegNr}");
+                                Console.WriteLine($"Color: {castItem2.Color}");
+                                Console.WriteLine($"Antal hjul: {castItem2.NumberOfWheels}");
+                                Console.WriteLine($"Cylinder Volume: {castItem2.cylinderVolume}");
+                            }
+                            else if (item is Bus castItem3)
+                            {
+                                Console.WriteLine("It Is a Bus!!");
+                                Console.WriteLine($"RegNr: {castItem3.RegNr}");
+                                Console.WriteLine($"Color: {castItem3.Color}");
+                                Console.WriteLine($"Antal hjul: {castItem3.NumberOfWheels}");
+                                Console.WriteLine($"Number of seats: {castItem3.numberOfSeats}");
+                            }
+                            else if (item is Airplane castItem4)
+                            {
+                                Console.WriteLine("It Is an Airplane!!");
+                                Console.WriteLine($"RegNr: {castItem4.RegNr}");
+                                Console.WriteLine($"Color: {castItem4.Color}");
+                                Console.WriteLine($"Antal hjul: {castItem4.NumberOfWheels}");
+                                Console.WriteLine($"Number of engines: {castItem4.numberOfEngines}");
+                            }
+                            else if (item is Boat castItem5)
+                            {
+                                Console.WriteLine("It Is a Boat!!");
+                                Console.WriteLine($"RegNr: {castItem5.RegNr}");
+                                Console.WriteLine($"Color: {castItem5.Color}");
+                                Console.WriteLine($"Antal hjul: {castItem5.NumberOfWheels}");
+                                Console.WriteLine($"Length: {castItem5.length}");
+                            }*/
+                            else break;
+                        }
                         break;
 
                     default:
@@ -127,6 +182,7 @@ namespace Garage2
             Console.WriteLine("'1' to create a garage");
             Console.WriteLine("'2' to park a vehicle");
             Console.WriteLine("'3' to unpark a vehicle");
+            Console.WriteLine("'4' to list all parked vehicles");
         }
 
     }

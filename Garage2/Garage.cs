@@ -9,7 +9,7 @@ namespace Garage2
         private Vehicle[] vehicles;
         private string Name { get; set; }
         private int MaxCapacity { get; set; }
-        private int count;
+        public int count;
         public bool isFull => count >= MaxCapacity;
         
 
@@ -57,6 +57,11 @@ namespace Garage2
         {
             vehicles[v] = null;
             count--;
+        }
+
+        internal Vehicle GetVehicle(int index)
+        {
+            return vehicles[index];
         }
     }
 }

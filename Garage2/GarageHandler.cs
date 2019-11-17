@@ -85,21 +85,35 @@ namespace Garage2
             }
         }
 
-        internal void Unpark(string regnr)
+        internal bool Unpark(string regnr)
         {
             //Vehicle removeVehicle = FindVehicleByRegNr(regnr.ToUpper());
             //int removeIndex = Array.IndexOf(Garra., removeVehicle);
 
+            Console.WriteLine("Before ToArray()");
             /*IEnumerable<int>*/ int[] x = Garra.Select((s, i) => new { i, s })
                 .Where(t => t.s.RegNr == regnr)
                 .Select(t => t.i).ToArray();
+            
+            Console.WriteLine("After ToArray()");
+            //Console.WriteLine("x[0] = " + x[0]);
 
             foreach (var item in x)
             {
                 Console.WriteLine("This is it: " + item);
             }
 
-            Garra.RemoveVehicle(x[0]);
+            try
+            {
+                Garra.RemoveVehicle(x[0]);
+            }
+            catch (IndexOutOfRangeException)
+            {
+
+                Console.WriteLine("I'm sorry, that car is not parked in the garage.");
+                return false;
+            }
+            return true;
 
         }
 
@@ -107,6 +121,19 @@ namespace Garage2
         {
             Vehicle v = Garra.FirstOrDefault(v => v.RegNr == regnr);
             return v;
+        }
+
+        internal Vehicle[] ListAllParkedVehicles()
+        {
+            int numberOfVehicles = Garra.count;
+            Vehicle[] vehs = new Vehicle[Garra.count];
+
+            for (int i = 0; i < numberOfVehicles; i++)
+            {
+                Vehicle ve = Garra.GetVehicle(i);
+                vehs[i] = ve;
+            }
+            return vehs;
         }
     }
 }
