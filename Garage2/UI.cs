@@ -119,52 +119,108 @@ namespace Garage2
                     case "4":
                         //list all parked vehicles
                        Vehicle[] ves = GH.ListAllParkedVehicles();
-                        for (int i = 0; i < ves.Length; i++)
-                        {
-                            Vehicle item = ves[i];
+                        ListVehicles(ves);
+                        //for (int i = 0; i < ves.Length; i++)
+                        //{
+                        //    Vehicle item = ves[i];
 
-                            if (item is Car castItem)
-                            {
-                                Console.WriteLine("It Is a CAR!!");
-                                Console.WriteLine($"RegNr: {castItem.RegNr}");
-                                Console.WriteLine($"Color: {castItem.Color}");
-                                Console.WriteLine($"Antal hjul: {castItem.NumberOfWheels}");
-                                Console.WriteLine($"Fueltype: {castItem.Fueltype}");
-                            }
-                            else if (item is MC castItem2)
-                            {
-                                Console.WriteLine("It Is a MC!!");
-                                Console.WriteLine($"RegNr: {castItem2.RegNr}");
-                                Console.WriteLine($"Color: {castItem2.Color}");
-                                Console.WriteLine($"Antal hjul: {castItem2.NumberOfWheels}");
-                                Console.WriteLine($"Cylinder Volume: {castItem2.CylinderVolume}");
-                            }
-                            else if (item is Bus castItem3)
-                            {
-                                Console.WriteLine("It Is a Bus!!");
-                                Console.WriteLine($"RegNr: {castItem3.RegNr}");
-                                Console.WriteLine($"Color: {castItem3.Color}");
-                                Console.WriteLine($"Antal hjul: {castItem3.NumberOfWheels}");
-                                Console.WriteLine($"Number of seats: {castItem3.NumberOfSeats}");
-                            }
-                            else if (item is Airplane castItem4)
-                            {
-                                Console.WriteLine("It Is an Airplane!!");
-                                Console.WriteLine($"RegNr: {castItem4.RegNr}");
-                                Console.WriteLine($"Color: {castItem4.Color}");
-                                Console.WriteLine($"Antal hjul: {castItem4.NumberOfWheels}");
-                                Console.WriteLine($"Number of engines: {castItem4.NumberOfEngines}");
-                            }
-                            else if (item is Boat castItem5)
-                            {
-                                Console.WriteLine("It Is a Boat!!");
-                                Console.WriteLine($"RegNr: {castItem5.RegNr}");
-                                Console.WriteLine($"Color: {castItem5.Color}");
-                                Console.WriteLine($"Antal hjul: {castItem5.NumberOfWheels}");
-                                Console.WriteLine($"Length: {castItem5.Length}");
-                            }
-                            else break;
+                        //    if (item is Car castItem)
+                        //    {
+                        //        Console.WriteLine("It Is a CAR!!");
+                        //        Console.WriteLine($"RegNr: {castItem.RegNr}");
+                        //        Console.WriteLine($"Color: {castItem.Color}");
+                        //        Console.WriteLine($"Antal hjul: {castItem.NumberOfWheels}");
+                        //        Console.WriteLine($"Fueltype: {castItem.Fueltype}");
+                        //    }
+                        //    else if (item is MC castItem2)
+                        //    {
+                        //        Console.WriteLine("It Is a MC!!");
+                        //        Console.WriteLine($"RegNr: {castItem2.RegNr}");
+                        //        Console.WriteLine($"Color: {castItem2.Color}");
+                        //        Console.WriteLine($"Antal hjul: {castItem2.NumberOfWheels}");
+                        //        Console.WriteLine($"Cylinder Volume: {castItem2.CylinderVolume}");
+                        //    }
+                        //    else if (item is Bus castItem3)
+                        //    {
+                        //        Console.WriteLine("It Is a Bus!!");
+                        //        Console.WriteLine($"RegNr: {castItem3.RegNr}");
+                        //        Console.WriteLine($"Color: {castItem3.Color}");
+                        //        Console.WriteLine($"Antal hjul: {castItem3.NumberOfWheels}");
+                        //        Console.WriteLine($"Number of seats: {castItem3.NumberOfSeats}");
+                        //    }
+                        //    else if (item is Airplane castItem4)
+                        //    {
+                        //        Console.WriteLine("It Is an Airplane!!");
+                        //        Console.WriteLine($"RegNr: {castItem4.RegNr}");
+                        //        Console.WriteLine($"Color: {castItem4.Color}");
+                        //        Console.WriteLine($"Antal hjul: {castItem4.NumberOfWheels}");
+                        //        Console.WriteLine($"Number of engines: {castItem4.NumberOfEngines}");
+                        //    }
+                        //    else if (item is Boat castItem5)
+                        //    {
+                        //        Console.WriteLine("It Is a Boat!!");
+                        //        Console.WriteLine($"RegNr: {castItem5.RegNr}");
+                        //        Console.WriteLine($"Color: {castItem5.Color}");
+                        //        Console.WriteLine($"Antal hjul: {castItem5.NumberOfWheels}");
+                        //        Console.WriteLine($"Length: {castItem5.Length}");
+                        //    }
+                        //    else break;
+                        //}
+                        break;
+
+                    case "5":
+                        //list all parked vehicles and how many of each kind
+                        Vehicle[] ves2 = GH.ListAllParkedVehicles();
+                        ListVehicles(ves2);
+                        /*var returned =*/ GH.ListNumberOfEachType();
+                        break;
+
+                    case "6":
+                        //change the maximum capacity
+                        int input6;
+                        Console.WriteLine("How many vehicles should the maximum capacity be changed to?");
+                        try 
+                        {
+                            input6 = int.Parse(Console.ReadLine()); 
                         }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Wrong format of the Capacity (not an integer).");
+                            Console.WriteLine("Please try again");
+                            Console.WriteLine();
+                            continue;
+                        }
+                        string answerBack = GH.ChangeMaximumCapacity(input6);
+                        Console.WriteLine(answerBack);
+                        break;
+
+                    case "7":
+                        //search for a vehicle by its regnr
+                        string input7;
+                        Console.WriteLine("What is the Reg Nr to search for?");
+                        try
+                        {
+                            input7 = Console.ReadLine();
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Wrong format of the RegNr.");
+                            Console.WriteLine("Please try again");
+                            Console.WriteLine();
+                            continue;
+                        }
+                        if(input7 == "")
+                        {
+                            Console.WriteLine("Please state a regNr (3 letters + 3 dights)");
+                            continue;
+                        }
+                        Vehicle[] vss = GH.FindVehicleByRegNr(input7.ToUpper());
+                        ListVehicles(vss);
+                        break;
+
+                    case "8":
+                        //search for a vehicle by its color/numberOfWheels
+
                         break;
 
                     default:
@@ -183,6 +239,61 @@ namespace Garage2
             Console.WriteLine("'2' to park a vehicle");
             Console.WriteLine("'3' to unpark a vehicle");
             Console.WriteLine("'4' to list all parked vehicles");
+            Console.WriteLine("'5' to list all parked vehicles and how many of each kind");
+            Console.WriteLine("'6' to change the maximum capacity");
+            Console.WriteLine("'7' to search a vehicle by its RegNr");
+            Console.WriteLine("'8' to search a vehicle by its color/numberOfWheels");
+
+        }
+
+        private void ListVehicles(Vehicle[] ves)
+        {
+            for (int i = 0; i < ves.Length; i++)
+            {
+                Vehicle item = ves[i];
+
+                if (item is Car castItem)
+                {
+                    Console.WriteLine("It Is a CAR!!");
+                    Console.WriteLine($"RegNr: {castItem.RegNr}");
+                    Console.WriteLine($"Color: {castItem.Color}");
+                    Console.WriteLine($"Antal hjul: {castItem.NumberOfWheels}");
+                    Console.WriteLine($"Fueltype: {castItem.Fueltype}");
+                }
+                else if (item is MC castItem2)
+                {
+                    Console.WriteLine("It Is a MC!!");
+                    Console.WriteLine($"RegNr: {castItem2.RegNr}");
+                    Console.WriteLine($"Color: {castItem2.Color}");
+                    Console.WriteLine($"Antal hjul: {castItem2.NumberOfWheels}");
+                    Console.WriteLine($"Cylinder Volume: {castItem2.CylinderVolume}");
+                }
+                else if (item is Bus castItem3)
+                {
+                    Console.WriteLine("It Is a Bus!!");
+                    Console.WriteLine($"RegNr: {castItem3.RegNr}");
+                    Console.WriteLine($"Color: {castItem3.Color}");
+                    Console.WriteLine($"Antal hjul: {castItem3.NumberOfWheels}");
+                    Console.WriteLine($"Number of seats: {castItem3.NumberOfSeats}");
+                }
+                else if (item is Airplane castItem4)
+                {
+                    Console.WriteLine("It Is an Airplane!!");
+                    Console.WriteLine($"RegNr: {castItem4.RegNr}");
+                    Console.WriteLine($"Color: {castItem4.Color}");
+                    Console.WriteLine($"Antal hjul: {castItem4.NumberOfWheels}");
+                    Console.WriteLine($"Number of engines: {castItem4.NumberOfEngines}");
+                }
+                else if (item is Boat castItem5)
+                {
+                    Console.WriteLine("It Is a Boat!!");
+                    Console.WriteLine($"RegNr: {castItem5.RegNr}");
+                    Console.WriteLine($"Color: {castItem5.Color}");
+                    Console.WriteLine($"Antal hjul: {castItem5.NumberOfWheels}");
+                    Console.WriteLine($"Length: {castItem5.Length}");
+                }
+                else break;
+            }
         }
 
     }

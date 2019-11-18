@@ -171,10 +171,13 @@ namespace Garage2
 
         }
 
-        private Vehicle FindVehicleByRegNr(string regnr)
+        public Vehicle[] FindVehicleByRegNr(string regnr)
         {
+            Vehicle[] vs = new Vehicle[1];
             Vehicle v = Garra.FirstOrDefault(v => v.RegNr == regnr);
-            return v;
+            if (v is Car) Console.WriteLine("v is a car!!!!!!");
+            vs[0] = v;
+            return vs;
         }
 
         internal Vehicle[] ListAllParkedVehicles()
@@ -188,6 +191,53 @@ namespace Garage2
                 vehs[i] = ve;
             }
             return vehs;
+        }
+
+        internal /*IEnumerable<string, int>*/ void ListNumberOfEachType()
+        {
+            var vehiclesPerType = from vehicle in Garra
+                                  group vehicle by vehicle.GetType().Name into vehicleGroup
+                                   select new 
+                                   {
+                                       Type = vehicleGroup.Key,
+                                       Count = vehicleGroup.Count(),
+                                   };
+            //select new Dictionary<string, int>() { { vehicleGroup.Key, vehicleGroup.Count } }
+
+            //var test = vehiclesPerType.ToDictionary();
+
+            vehiclesPerType.ToArray();
+            //Console.WriteLine($"w1: {vehiclesPerType.ToArray()[0]}");
+            //Console.WriteLine($"w2: {vehiclesPerType.ToArray()[1]}");
+            //Console.WriteLine($"w3: {vehiclesPerType.ToArray()[2]}");
+            //Console.WriteLine($"w4: {vehiclesPerType.ToArray()[3]}");
+            //Console.WriteLine($"w5: {vehiclesPerType.ToArray()[4]}");
+            //Console.WriteLine($"w6: {vehiclesPerType.ToArray()[5]}");
+
+            foreach (var item in vehiclesPerType)
+            {
+                Console.WriteLine(item);
+            }
+
+            //return vehiclesPerType;
+        }
+
+        internal string ChangeMaximumCapacity(int wantedCapacity)
+        {
+            string answerString;
+
+            if(wantedCapacity < Garra.count)
+            {
+                Garra.MaxCapacity = Garra.count;
+                answerString = "New value is smaller than number of vehicles in the garage, new value is set to the number of vehicles in the garage";
+            }
+            else
+            {
+                Garra.MaxCapacity = wantedCapacity;
+                answerString = "Maximum capacity set to suggested value";
+            }
+
+            return answerString;
         }
     }
 }
