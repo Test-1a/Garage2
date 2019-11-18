@@ -120,6 +120,7 @@ namespace Garage2
                         //list all parked vehicles
                        Vehicle[] ves = GH.ListAllParkedVehicles();
                         ListVehicles(ves);
+                        //ListVehicles(ves);
                         //for (int i = 0; i < ves.Length; i++)
                         //{
                         //    Vehicle item = ves[i];
@@ -220,7 +221,57 @@ namespace Garage2
 
                     case "8":
                         //search for a vehicle by its color/numberOfWheels
+                        string empty = "";
+                        string input8;
+                        IEnumerable<Vehicle> ReturnedVehicles = null;
+                        
+                        Console.WriteLine("Which properties do you want to search for?");
+                        Console.WriteLine("1. Color, 2. Number of wheels, 3. Both Color and Number of wheels");
+                        input8 = Console.ReadLine();
+                        switch (input8)
+                        {
+                            case "1":
+                                Console.WriteLine("Which color do you want to search for?");
+                                string input71 = Console.ReadLine().ToUpper();
+                                ReturnedVehicles = GH.FindVehicle("Color", input71, empty);
+                                foreach (var item in ReturnedVehicles)
+                                {
+                                    Vehicle[] v = new Vehicle[1];
+                                    v[0] = item;
+                                    ListVehicles(v);
+                                }
+                                break;
 
+                            case "2":
+                                Console.WriteLine("How many wheels do you want to search for?");
+                                string input72 = Console.ReadLine();
+                                ReturnedVehicles = GH.FindVehicle("Wheels", input72, empty);
+                                foreach (var item in ReturnedVehicles)
+                                {
+                                    Vehicle[] v = new Vehicle[1];
+                                    v[0] = item;
+                                    ListVehicles(v);
+                                }
+                                break;
+
+                            case "3":
+                                Console.WriteLine("Which color do you want to search for?");
+                                string input731 = Console.ReadLine();
+                                Console.WriteLine("How many wheels do you want to search for?");
+                                string input732 = Console.ReadLine();
+                                ReturnedVehicles = GH.FindVehicle("Both", input731, input732);
+                                foreach (var item in ReturnedVehicles)
+                                {
+                                    Vehicle[] v = new Vehicle[1];
+                                    v[0] = item;
+                                    ListVehicles(v);
+                                }
+
+                                break;
+
+                            default:
+                                break;
+                        }
                         break;
 
                     default:
@@ -230,6 +281,8 @@ namespace Garage2
 
            
         }
+
+        
 
         private void ShowMenu()
         {
@@ -247,6 +300,7 @@ namespace Garage2
         }
 
         private void ListVehicles(Vehicle[] ves)
+ //       private void ListVehicles(Vehicle ves)
         {
             for (int i = 0; i < ves.Length; i++)
             {

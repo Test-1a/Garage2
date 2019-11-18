@@ -239,5 +239,25 @@ namespace Garage2
 
             return answerString;
         }
+
+        internal /*static*/ IEnumerable<Vehicle> FindVehicle(string v, string input71, string input72)
+        {
+            if (v == "Color")
+            {
+                var vehicleQuery = Garra.Where(v => v.Color == input71.ToUpper());
+                return vehicleQuery;
+            }
+            else if (v == "Wheels")
+            {
+                var vehicleQuery = Garra.Where(v => v.NumberOfWheels == input71);
+                return vehicleQuery;
+            }
+            else if (v == "Both")
+            {
+                var vehicleQuery = Garra.Where(v => v.Color == input71.ToUpper() && v.NumberOfWheels == input72);
+                return vehicleQuery;
+            }
+            else return null;
+        }
     }
 }
