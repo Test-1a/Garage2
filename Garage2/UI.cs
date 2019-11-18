@@ -131,13 +131,13 @@ namespace Garage2
                                 Console.WriteLine($"Antal hjul: {castItem.NumberOfWheels}");
                                 Console.WriteLine($"Fueltype: {castItem.Fueltype}");
                             }
-                            /*else if (item is MC castItem2)
+                            else if (item is MC castItem2)
                             {
                                 Console.WriteLine("It Is a MC!!");
                                 Console.WriteLine($"RegNr: {castItem2.RegNr}");
                                 Console.WriteLine($"Color: {castItem2.Color}");
                                 Console.WriteLine($"Antal hjul: {castItem2.NumberOfWheels}");
-                                Console.WriteLine($"Cylinder Volume: {castItem2.cylinderVolume}");
+                                Console.WriteLine($"Cylinder Volume: {castItem2.CylinderVolume}");
                             }
                             else if (item is Bus castItem3)
                             {
@@ -145,7 +145,7 @@ namespace Garage2
                                 Console.WriteLine($"RegNr: {castItem3.RegNr}");
                                 Console.WriteLine($"Color: {castItem3.Color}");
                                 Console.WriteLine($"Antal hjul: {castItem3.NumberOfWheels}");
-                                Console.WriteLine($"Number of seats: {castItem3.numberOfSeats}");
+                                Console.WriteLine($"Number of seats: {castItem3.NumberOfSeats}");
                             }
                             else if (item is Airplane castItem4)
                             {
@@ -153,7 +153,7 @@ namespace Garage2
                                 Console.WriteLine($"RegNr: {castItem4.RegNr}");
                                 Console.WriteLine($"Color: {castItem4.Color}");
                                 Console.WriteLine($"Antal hjul: {castItem4.NumberOfWheels}");
-                                Console.WriteLine($"Number of engines: {castItem4.numberOfEngines}");
+                                Console.WriteLine($"Number of engines: {castItem4.NumberOfEngines}");
                             }
                             else if (item is Boat castItem5)
                             {
@@ -161,8 +161,8 @@ namespace Garage2
                                 Console.WriteLine($"RegNr: {castItem5.RegNr}");
                                 Console.WriteLine($"Color: {castItem5.Color}");
                                 Console.WriteLine($"Antal hjul: {castItem5.NumberOfWheels}");
-                                Console.WriteLine($"Length: {castItem5.length}");
-                            }*/
+                                Console.WriteLine($"Length: {castItem5.Length}");
+                            }
                             else break;
                         }
                         break;

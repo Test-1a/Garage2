@@ -45,7 +45,30 @@ namespace Garage2
                 Car car = new Car(parkAnswers[1].ToUpper(), parkAnswers[2].ToUpper(), parkAnswers[3], parkAnswers[4].ToUpper());
                 Console.WriteLine("A car has been created!");
                 success = Garra.AddVehicle(car);
-                
+            }
+            else if (parkAnswers[0] == "MC")
+            {
+                MC mc = new MC(parkAnswers[1].ToUpper(), parkAnswers[2].ToUpper(), parkAnswers[3], parkAnswers[4]);
+                Console.WriteLine("An MC has been created!");
+                success = Garra.AddVehicle(mc);
+            }
+            else if (parkAnswers[0] == "Bus")
+            {
+                Bus b1 = new Bus(parkAnswers[1].ToUpper(), parkAnswers[2].ToUpper(), parkAnswers[3], parkAnswers[4]);
+                Console.WriteLine("A Bus has been created!");
+                success = Garra.AddVehicle(b1);
+            }
+            else if (parkAnswers[0] == "Airplane")
+            {
+                Airplane a1 = new Airplane(parkAnswers[1].ToUpper(), parkAnswers[2].ToUpper(), parkAnswers[3], parkAnswers[4]);
+                Console.WriteLine("An Airplane has been created!");
+                success = Garra.AddVehicle(a1);
+            }
+            else if (parkAnswers[0] == "Boat")
+            {
+                Boat boat1 = new Boat(parkAnswers[1].ToUpper(), parkAnswers[2].ToUpper(), parkAnswers[3], parkAnswers[4]);
+                Console.WriteLine("A Boat has been created!");
+                success = Garra.AddVehicle(boat1);
             }
             printGarage();
 
@@ -79,7 +102,38 @@ namespace Garage2
                         Console.WriteLine($"Antal hjul: {castItem1.NumberOfWheels}");
                         Console.WriteLine($"Fueltype: {castItem1.Fueltype}");
                     }
-                    
+                    else if (item is MC castItem2)
+                    {
+                        Console.WriteLine($"{index}. {castItem2.GetType().Name}");
+                        Console.WriteLine($"RegNr: {castItem2.RegNr}");
+                        Console.WriteLine($"Color: {castItem2.Color}");
+                        Console.WriteLine($"Antal hjul: {castItem2.NumberOfWheels}");
+                        Console.WriteLine($"Cylinder Volume: {castItem2.CylinderVolume}");
+                    }
+                    else if (item is Bus castItem3)
+                    {
+                        Console.WriteLine($"{index}. {castItem3.GetType().Name}");
+                        Console.WriteLine($"RegNr: {castItem3.RegNr}");
+                        Console.WriteLine($"Color: {castItem3.Color}");
+                        Console.WriteLine($"Antal hjul: {castItem3.NumberOfWheels}");
+                        Console.WriteLine($"Number of seats: {castItem3.NumberOfSeats}");
+                    }
+                    else if (item is Airplane castItem4)
+                    {
+                        Console.WriteLine($"{index}. {castItem4.GetType().Name}");
+                        Console.WriteLine($"RegNr: {castItem4.RegNr}");
+                        Console.WriteLine($"Color: {castItem4.Color}");
+                        Console.WriteLine($"Antal hjul: {castItem4.NumberOfWheels}");
+                        Console.WriteLine($"Number of seats: {castItem4.NumberOfEngines}");
+                    }
+                    else if (item is Boat castItem5)
+                    {
+                        Console.WriteLine($"{index}. {castItem5.GetType().Name}");
+                        Console.WriteLine($"RegNr: {castItem5.RegNr}");
+                        Console.WriteLine($"Color: {castItem5.Color}");
+                        Console.WriteLine($"Antal hjul: {castItem5.NumberOfWheels}");
+                        Console.WriteLine($"Number of seats: {castItem5.Length}");
+                    }
                 }
                 index++;
             }
