@@ -173,7 +173,11 @@ namespace Garage2
                         //list all parked vehicles and how many of each kind
                         Vehicle[] ves2 = GH.ListAllParkedVehicles();
                         ListVehicles(ves2);
-                        /*var returned =*/ GH.ListNumberOfEachType();
+                       Dictionary<string, int> numbers = GH.ListNumberOfEachType();
+                        foreach (KeyValuePair<string, int> item in numbers)
+                        {
+                            Console.WriteLine($"Type: {item.Key}    Value: {item.Value}");
+                        }
                         break;
 
                     case "6":

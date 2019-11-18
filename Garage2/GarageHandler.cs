@@ -182,31 +182,54 @@ namespace Garage2
 
         internal Vehicle[] ListAllParkedVehicles()
         {
-            int numberOfVehicles = Garra.count;
+            //int numberOfVehicles = Garra.count;
+            //Vehicle[] vehs = new Vehicle[Garra.count];
+
+            //for (int i = 0; i < numberOfVehicles; i++)
+            //{
+            //    Vehicle ve = Garra.GetVehicle(i);
+            //    vehs[i] = ve;
+            //}
+            //return vehs;
+
+
             Vehicle[] vehs = new Vehicle[Garra.count];
 
-            for (int i = 0; i < numberOfVehicles; i++)
+            //for (int i = 0; i < Garra.MaxCapacity; i++)
+            //{
+            //    Vehicle ve = Garra.GetVehicle(i);
+            //    if (ve != null) vehs[i] = ve;
+            //}
+            int i = 0;
+
+
+            foreach (var item in Garra)
             {
-                Vehicle ve = Garra.GetVehicle(i);
-                vehs[i] = ve;
+                if (item != null)
+                {
+                    vehs[i] = item;
+                    i++;
+                }
+                
             }
+
             return vehs;
         }
 
-        internal /*IEnumerable<string, int>*/ void ListNumberOfEachType()
+        internal /*IEnumerable<string, int>*/ /*void*/ Dictionary<string, int> ListNumberOfEachType()
         {
-            var vehiclesPerType = from vehicle in Garra
+            /*var vehiclesPerType = from vehicle in Garra
                                   group vehicle by vehicle.GetType().Name into vehicleGroup
                                    select new 
                                    {
                                        Type = vehicleGroup.Key,
                                        Count = vehicleGroup.Count(),
-                                   };
+                                   };*/
             //select new Dictionary<string, int>() { { vehicleGroup.Key, vehicleGroup.Count } }
 
             //var test = vehiclesPerType.ToDictionary();
 
-            vehiclesPerType.ToArray();
+            //vehiclesPerType.ToArray();
             //Console.WriteLine($"w1: {vehiclesPerType.ToArray()[0]}");
             //Console.WriteLine($"w2: {vehiclesPerType.ToArray()[1]}");
             //Console.WriteLine($"w3: {vehiclesPerType.ToArray()[2]}");
@@ -214,12 +237,40 @@ namespace Garage2
             //Console.WriteLine($"w5: {vehiclesPerType.ToArray()[4]}");
             //Console.WriteLine($"w6: {vehiclesPerType.ToArray()[5]}");
 
-            foreach (var item in vehiclesPerType)
+            /*foreach (var item in vehiclesPerType)
             {
                 Console.WriteLine(item);
-            }
+            }*/
 
             //return vehiclesPerType;
+
+            int Carcount = 0;
+            int MCCount = 0;
+            int BusCount = 0;
+            int AirplainCount = 0;
+            int BoatCount = 0;
+
+            Dictionary<string, int> counts = new Dictionary<string, int>();
+
+            foreach (var item in Garra)
+            {
+                if (item != null)
+                {
+                    if (item is Car) Carcount++;
+                    else if (item is MC) MCCount++;
+                    else if (item is Bus) BusCount++;
+                    else if (item is Airplane) AirplainCount++;
+                    else if (item is Boat) BoatCount++;
+                }
+            }
+
+            counts.Add("Car", Carcount);
+            counts.Add("MC", MCCount);
+            counts.Add("Bus", BusCount);
+            counts.Add("Airplain", AirplainCount);
+            counts.Add("Boat", BoatCount);
+
+            return counts;
         }
 
         internal string ChangeMaximumCapacity(int wantedCapacity)
