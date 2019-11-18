@@ -203,6 +203,7 @@ namespace Garage2
                         //search for a vehicle by its regnr
                         string input7;
                         Console.WriteLine("What is the Reg Nr to search for?");
+
                         try
                         {
                             input7 = Console.ReadLine();
@@ -214,11 +215,13 @@ namespace Garage2
                             Console.WriteLine();
                             continue;
                         }
+
                         if(input7 == "")
                         {
                             Console.WriteLine("Please state a regNr (3 letters + 3 dights)");
                             continue;
                         }
+
                         Vehicle[] vss = GH.FindVehicleByRegNr(input7.ToUpper());
                         ListVehicles(vss);
                         break;
@@ -228,7 +231,8 @@ namespace Garage2
                         string empty = "";
                         string input8;
                         IEnumerable<Vehicle> ReturnedVehicles = null;
-                        
+                        Vehicle[] v = new Vehicle[1];
+
                         Console.WriteLine("Which properties do you want to search for?");
                         Console.WriteLine("1. Color, 2. Number of wheels, 3. Both Color and Number of wheels");
                         input8 = Console.ReadLine();
@@ -240,7 +244,7 @@ namespace Garage2
                                 ReturnedVehicles = GH.FindVehicle("Color", input71, empty);
                                 foreach (var item in ReturnedVehicles)
                                 {
-                                    Vehicle[] v = new Vehicle[1];
+                                    //Vehicle[] v = new Vehicle[1];
                                     v[0] = item;
                                     ListVehicles(v);
                                 }
@@ -252,7 +256,7 @@ namespace Garage2
                                 ReturnedVehicles = GH.FindVehicle("Wheels", input72, empty);
                                 foreach (var item in ReturnedVehicles)
                                 {
-                                    Vehicle[] v = new Vehicle[1];
+                                    //Vehicle[] v = new Vehicle[1];
                                     v[0] = item;
                                     ListVehicles(v);
                                 }
@@ -266,7 +270,7 @@ namespace Garage2
                                 ReturnedVehicles = GH.FindVehicle("Both", input731, input732);
                                 foreach (var item in ReturnedVehicles)
                                 {
-                                    Vehicle[] v = new Vehicle[1];
+                                    //Vehicle[] v = new Vehicle[1];
                                     v[0] = item;
                                     ListVehicles(v);
                                 }
