@@ -42,7 +42,21 @@ namespace Garage2
                             Console.WriteLine();
                             continue;
                         }
-                        GH.CreateGarage(input11, input12);
+                        catch (OverflowException)
+                        {
+                            Console.WriteLine("Please state a number bigger than zero");
+                            Console.WriteLine("Please try again");
+                            Console.WriteLine();
+                            continue;
+                        }
+                        if(input12 > 0) GH.CreateGarage(input11, input12);
+                        else
+                        {
+                            Console.WriteLine("Please state a capacity bigger than 0");
+                            Console.WriteLine("Please try again");
+                            Console.WriteLine();
+                            continue;
+                        }
                         break;
 
                     case "2":
