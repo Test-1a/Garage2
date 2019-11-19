@@ -1,6 +1,6 @@
 ﻿namespace Garage2
 {
-    internal class Car : Vehicle
+    public class Car : Vehicle
     {
 
         public string Fueltype { get; set; }

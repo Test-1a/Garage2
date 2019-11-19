@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Garage2
 {
-    internal class Garage<T> : IEnumerable<T> where T : Vehicle 
+    public class Garage<T> : IEnumerable<T> where T : Vehicle 
     {
         private Vehicle[] vehicles;
         private string Name { get; set; }
@@ -40,7 +40,8 @@ namespace Garage2
             return this.GetEnumerator();
         }
 
-        internal bool AddVehicle(Vehicle v)
+        //internal bool AddVehicle(Vehicle v)
+        public bool AddVehicle(Vehicle v)
         {
             //vehicles[count] = v;
             //count++;
@@ -53,13 +54,15 @@ namespace Garage2
             return true;
         }
 
-        internal void RemoveVehicle(int v)
+        //internal void RemoveVehicle(int v)
+        public void RemoveVehicle(int v)
         {
             vehicles[v] = null;
             count--;
         }
 
-        internal Vehicle GetVehicle(int index)
+        //internal Vehicle GetVehicle(int index)
+        public Vehicle GetVehicle(int index)
         {
             return vehicles[index];
         }

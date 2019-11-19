@@ -1,6 +1,6 @@
 ﻿namespace Garage2
 {
-    internal class Vehicle
+    public class Vehicle
     {
         public Vehicle(string v1, string v2, string v3)
         {
