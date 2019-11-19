@@ -191,9 +191,9 @@ namespace Garage2
             //    vehs[i] = ve;
             //}
             //return vehs;
+           // return Garra.ToArray();
 
-
-            Vehicle[] vehs = new Vehicle[Garra.count];
+            Vehicle[] vehs = new Vehicle[Garra.Count];
 
             //for (int i = 0; i < Garra.MaxCapacity; i++)
             //{
@@ -277,9 +277,9 @@ namespace Garage2
         {
             string answerString;
 
-            if(wantedCapacity < Garra.count)
+            if(wantedCapacity < Garra.Count)
             {
-                Garra.MaxCapacity = Garra.count;
+                Garra.MaxCapacity = Garra.Count;
                 answerString = "New value is smaller than number of vehicles in the garage, new value is set to the number of vehicles in the garage";
             }
             else

@@ -6,19 +6,19 @@ namespace Garage2
 {
     public class Garage<T> : IEnumerable<T> where T : Vehicle 
     {
-        private Vehicle[] vehicles;
+        private T[] vehicles;
         private string Name { get; set; }
         public int MaxCapacity { get; set; }
-        public int count;
-        public bool isFull => count >= MaxCapacity;
+        public int Count;
+        public bool isFull => Count >= MaxCapacity;
         
 
         public Garage(string input11, int input12)
         {
             Name = input11;
             MaxCapacity = input12;
-            vehicles = new Vehicle[MaxCapacity];
-            count = 0;
+            vehicles = new T[MaxCapacity];
+            Count = 0;
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -41,7 +41,7 @@ namespace Garage2
         }
 
         //internal bool AddVehicle(Vehicle v)
-        public bool AddVehicle(Vehicle v)
+        public bool AddVehicle(T v)
         {
             //vehicles[count] = v;
             //count++;
@@ -50,7 +50,7 @@ namespace Garage2
             int addIndex = Array.FindIndex(vehicles, i => i == null);
             Console.WriteLine($"AddIndex = {addIndex}");
             vehicles[addIndex] = v;
-            count++;
+            Count++;
             return true;
         }
 
@@ -58,13 +58,18 @@ namespace Garage2
         public void RemoveVehicle(int v)
         {
             vehicles[v] = null;
-            count--;
+            Count--;
         }
 
         //internal Vehicle GetVehicle(int index)
-        public Vehicle GetVehicle(int index)
+        public T GetVehicle(int index)
         {
             return vehicles[index];
         }
+
+        //this means the garage
+        //Now you can get a vihecles by just 
+        //indexing directly on the garage
+        public T this[int index] => vehicles[index];
     }
 }

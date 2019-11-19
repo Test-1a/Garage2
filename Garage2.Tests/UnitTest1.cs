@@ -31,7 +31,10 @@ namespace Garage2.Tests
             g.AddVehicle(expected);
 
             //Act
-            Vehicle actual = g.GetVehicle(0);
+            // Vehicle actual = g.GetVehicle(0);
+            Vehicle actual = g[0];  //this is the same as above 
+                                    //after adding in indexer on the garage 
+                                    //see the last row in Garage.cs
 
             //Assert
             Assert.AreEqual(expected, actual);

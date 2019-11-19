@@ -11,7 +11,7 @@ namespace Garage2
             GH = new GarageHandler();
         }
 
-        internal void run()
+        internal void Run()
         {
             while (true)
             {
@@ -330,6 +330,12 @@ namespace Garage2
 
                 if (item is Car castItem)
                 {
+                    Console.WriteLine("Debug");
+                    foreach (var prop in castItem.GetType().GetProperties())
+                    {
+                        Console.WriteLine(prop);
+                    }
+                    Console.WriteLine("------------------------------");
                     Console.WriteLine("It Is a CAR!!");
                     Console.WriteLine($"RegNr: {castItem.RegNr}");
                     Console.WriteLine($"Color: {castItem.Color}");
